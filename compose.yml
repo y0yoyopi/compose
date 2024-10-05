@@ -11,3 +11,8 @@
      build: ./webplantilla
      ports:
        - 8081:80
+   api-mysql-cc:
+     build: ./api-mysql-cc
+     image: yoyoyopi/api-mysql-cc
+     ports:
+       - 8020:8000
