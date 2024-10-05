@@ -1,0 +1,34 @@
+DROP DATABASE IF EXISTS api-mysql-cc;
+CREATE DATABASE api-mysql-cc CHARSET utf8mb4;
+USE api-mysql-cc;
+
+CREATE TABLE Local (
+    ID_local INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    direccion VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Empleados (
+    ID_empleado INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    cargo VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) UNIQUE NOT NULL,
+    edad INT NOT NULL
+);
+
+CREATE TABLE Trabajan (
+    ID_local INT NOT NULL,
+    ID_empleado INT NOT NULL,
+    PRIMARY KEY (ID_local, ID_empleado),
+    FOREIGN KEY (ID_local) REFERENCES Local(ID_local) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (ID_empleado) REFERENCES Empleados(ID_empleado) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO Empleados(nombre, cargo, correo, edad) VALUES('Bob', 'Conserje','doodoodookie@gmail.com',56);
+INSERT INTO Empleados(nombre, cargo, correo, edad) VALUES('Bobo','Supervisor','mojabifantasma@gmail.com',18);
+INSERT INTO Local(nombre, direccion) VALUES('Baltimore', '1539 N Calvert St, Baltimore');
+
+INSERT INTO Trabajan(ID_local, ID_empleado) VALUES (1, 1);
+INSERT INTO Trabajan(ID_local, ID_empleado) VALUES (1, 2);
+commit;
+
