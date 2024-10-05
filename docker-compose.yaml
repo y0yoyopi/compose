@@ -1,0 +1,21 @@
+services:
+  api-students:
+    build: ./api-students
+    ports:
+      - "8000:8000"
+
+  websimpl:
+    build: ./websimple
+    ports:
+      - "8080:80"
+
+  webplantilla:
+    build: ./webplantilla
+    ports:
+      - "8081:80"
+
+  api-mysql-cc:
+    build: ./api-mysql-cc
+    image: y0yoyopi/api-mysql-cc
+    ports:
+      - "8020:8000"
